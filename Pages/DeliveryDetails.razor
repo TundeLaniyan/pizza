@@ -1,0 +1,85 @@
+﻿@page "/register"
+@using Model
+@using BlazorApp.Data
+@inject NavigationManager NavManager
+@inject ShoppingBasketService PizzaOrder
+@inject OrderService OrderService
+
+<div class="register">
+    <div>
+        <form @onsubmit=@PlaceOrder >
+            <div class="register__form">
+                <div class="register__card">
+                    <h2>Review Order</h2>
+                    <OrderListComponent PizzaList=@PizzaOrder.ShoppingList TotalPizzaPrice=@PizzaOrder.TotalPizzaPrice valid=@PizzaOrder.IsCheckoutComplete />
+                </div>
+                <div class="register__card">
+                    <h2>Deliver to...</h2>
+                    <div class="register__input">
+                        <label>Name</label>
+                        <input @bind-value=@CustomerDetail.Name required />
+                    </div>
+                    <div class="register__input">
+                        <label>Line1</label>
+                        <input @bind-value=@CustomerDetail.Line1 />
+                    </div>
+                    <div class="register__input">
+                        <label>Line2</label>
+                        <input @bind-value=@CustomerDetail.Line2 />
+                    </div>
+                    <div class="register__input">
+                        <label>City</label>
+                        <input @bind-value=@CustomerDetail.City />
+                    </div>
+                    <div class="register__input">
+                        <label>Region</label>
+                        <input @bind-value=@CustomerDetail.Region />
+                    </div>
+                    <div class="register__input">
+                        <label>Postal Code</label>
+                        <input @bind-value=@CustomerDetail.PostCode required />
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <div class="btn__container">
+                <button class="btn btn-danger">Place order</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@code {
+    Customer CustomerDetail = new Customer();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (PizzaOrder.ShoppingList.Count == 0) NavManager.NavigateTo("/");
+    }
+
+    public void PlaceOrder()
+    {
+        PizzaOrder.IsPaid = true;
+        PizzaOrder.time = DateTime.Now;
+        OrderModel Order = new OrderModel()
+        {
+            CustomerDetail = CustomerDetail,
+            OrderDetail = new ShoppingBasketService()
+            {
+                TotalPizzaPrice = PizzaOrder.TotalPizzaPrice,
+                IsCheckoutComplete = PizzaOrder.IsCheckoutComplete,
+                IsPaid = PizzaOrder.IsPaid
+            }
+        };
+
+        Order.OrderDetail.ShoppingList.AddRange(PizzaOrder.ShoppingList);
+
+        OrderService.AddToActiveOrder(Order);
+
+        PizzaOrder.clearPizzaBasket();
+
+        NavManager.NavigateTo("/myorders");
+    }
+}

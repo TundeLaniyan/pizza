@@ -1,0 +1,62 @@
+[
+  {
+    "Breakfast Pizza": {
+      "cost": {
+        "10Inch": 10,
+        "12Inch": 15,
+        "15Inch": 20,
+        "18Inch": 25
+      }
+    }
+  },
+  {
+    "Fruit Pizza": {
+      "cost": {
+        "10Inch": 10,
+        "12Inch": 15,
+        "15Inch": 20,
+        "18Inch": 25
+      }
+    }
+  },
+  {
+    "Hawaiin Pizza": {
+      "cost": {
+        "10Inch": 10,
+        "12Inch": 15,
+        "15Inch": 20,
+        "18Inch": 25
+      }
+    }
+  },
+  {
+    "Meat Lover": {
+      "cost": {
+        "10Inch": 10,
+        "12Inch": 15,
+        "15Inch": 20,
+        "18Inch": 25
+      }
+    }
+  },
+  {
+    "Mexican Pizza": {
+      "cost": {
+        "10Inch": 10,
+        "12Inch": 15,
+        "15Inch": 20,
+        "18Inch": 25
+      }
+    }
+  },
+  {
+    "Rainbow Pizza": {
+      "cost": {
+        "10Inch": 10,
+        "12Inch": 15,
+        "15Inch": 20,
+        "18Inch": 25
+      }
+    }
+  }
+]

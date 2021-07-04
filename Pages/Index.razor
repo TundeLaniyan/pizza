@@ -1,0 +1,100 @@
+@page "/"
+@using Model
+@using BlazorApp.Data
+@inject PizzaService PizzaService
+@inject ShoppingBasketService ShoppingBasketService
+
+<div class="flex-container">
+
+    <main class="flex-container__main">
+        <section class="row">
+
+            @foreach (Pizza pizza in PizzaList)
+            {
+                <article class="col-6 mb-3">
+                    <div class="pizza-card">
+                        <div class="pizza-card__image">
+                            <img src="@pizza.Image" alt="Card image cap">
+                        </div>
+
+                        <div class="pizza-card__content">
+                            <h5 class="card-title">@pizza.Name</h5>
+                            <p class="card-text">@pizza.Description</p>
+                            <a id="myBtn" class="btn btn-danger" @onclick="@(() => OnSelectedPizza(pizza))">Select</a>
+                        </div>
+                    </div>
+                </article>
+            }
+
+        </section>
+
+        @if (SelectedPizza != null)
+        {
+            <div class="pizza-pop-up">
+                <button class="btn btn__close" @onclick="(() => SelectedPizza = null)">x</button>
+                <h1>@SelectedPizza.Name</h1>
+                <h4>@SelectedPizza.Price</h4>
+                <img class="pizza-image" src=@SelectedPizza.Image />
+                <p>@SelectedPizza.Description</p>
+@*                <p>Click on Extras you can add:</p>
+                <ul>
+                    <li>More Onions 80p...........<button>Add</button></li>
+                    <li>Extra Cheese &#163;1............<button>Add</button></li>
+                    <li>Fresh Chillies &#163;1.20.......<button>Add</button></li>
+                </ul>
+
+                <button @onclick="@(() => AddToCart(SelectedPizza))">Add To Cart</button>
+                </ul>*@
+                    
+                <button class="btn btn-light" @onclick="@(() => AddToCart(SelectedPizza))">Add To Cart</button>
+            </div>
+        }
+    </main>
+
+    <aside class="flex-container__sidebar">
+        <ShoppingBasketComponent pizzaList=@ShoppingList />
+    </aside>
+
+</div>
+
+
+
+@code {
+    public List<Pizza> PizzaList => PizzaService.Pizzas;
+    public List<Pizza> ShoppingList => ShoppingBasketService.ShoppingList;
+
+    public Pizza SelectedPizza { get; set; }
+
+@* protected override void OnInitialized()
+{
+    PizzaList = PizzaService.Pizzas;
+    ShoppingList = ShoppingBasketService.ShoppingList;
+} *@
+
+    public void OnSelectedPizza(Pizza selectedPizza)
+    {
+        SelectedPizza = new Pizza()
+        {
+            Id = selectedPizza.Id,
+            Name = selectedPizza.Name,
+            Description = selectedPizza.Description,
+            Price = selectedPizza.Price,
+            Size = selectedPizza.Size,
+            Image = selectedPizza.Image
+        };
+
+    }
+
+    private void AddToCart(Pizza pizza)
+    {
+        AddToShoppingBasket(pizza);
+        SelectedPizza = null;
+    }
+
+
+public void AddToShoppingBasket(Pizza pizza)
+{
+    ShoppingBasketService.addPizzaToOrder(pizza);
+}
+
+}

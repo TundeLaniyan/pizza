@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/main.css",
+    "inputFile": "wwwroot/css/main.scss"
+  },
+  {
+    "outputFile": "Pages/Orders.razor.css",
+    "inputFile": "Pages/Orders.razor.scss"
+  },
+  {
+    "outputFile": "Component/OrderListComponent.razor.css",
+    "inputFile": "Component/OrderListComponent.razor.scss"
+  },
+  {
+    "outputFile": "Pages/DeliveryDetails.razor.css",
+    "inputFile": "Pages/DeliveryDetails.razor.scss"
+  },
+  {
+    "outputFile": "Pages/MyOrders.razor.css",
+    "inputFile": "Pages/MyOrders.razor.scss"
+  }
+]

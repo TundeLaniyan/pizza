@@ -1,0 +1,27 @@
+﻿@using Model
+
+<div class="orderlist">
+    @if (valid)
+    {
+        @foreach (var pizza in PizzaList)
+        {
+            <div class="pizza-card">
+                <p class="font-weight-bold">@pizza.Size @pizza.Name (£@pizza.Price)</p>
+                <img class="pizza-img" src="/@pizza.Image" />
+            </div>
+        }
+    }
+    <p>Total price: £@(valid ? TotalPizzaPrice : 0)</p>
+</div>
+
+@code {
+    [Parameter]
+    public List<Pizza> PizzaList { get; set; }
+
+
+    [Parameter]
+    public double TotalPizzaPrice { get; set; }
+
+    [Parameter]
+    public bool valid { get; set; }
+}

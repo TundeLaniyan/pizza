@@ -1,0 +1,23 @@
+﻿.order .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 3rem;
+  background-color: lightgrey; }
+
+.order__time {
+  color: indianred;
+  text-transform: uppercase;
+  font-size: 1.6rem; }
+
+.order__status {
+  color: black; }
+
+.order .body {
+  display: flex;
+  padding: 2rem 3rem;
+  color: black; }
+  .order .body__left {
+    flex: 0 0 75%; }
+  .order .body__right {
+    flex: 0 0 25%; }

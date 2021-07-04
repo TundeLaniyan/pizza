@@ -1,0 +1,42 @@
+.nav {
+    height: 7rem;
+    align-items: flex-end;
+}
+
+.navbar {
+}
+
+.nav-link {
+    color: orange;
+}
+
+/*the Pizza Pals background*/
+.top-row {
+    background-color: rgba(0,0,0,0.4);
+}
+
+/*the Pizza Pals lettering on nav bar*/
+.navbar-brand {
+    font-size: 1.1rem;
+    color: goldenrod;
+}
+
+/*the icon on nav bar*/
+.oi {
+    display: inline;
+    color: darkorange;
+}
+
+
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}
+

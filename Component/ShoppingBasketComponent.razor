@@ -1,0 +1,48 @@
+﻿@using Model
+@using BlazorApp.Data
+@inject NavigationManager NavManager
+@inject ShoppingBasketService ShoppingBasketService
+
+
+<div class="shopping-bask">
+    <h3>ShoppingBasket</h3>
+    <ul>
+        @foreach (var p in pizzaList)
+        {
+            <div class="pizza-checkout-display">
+                <div class="pizza-checkout-content">
+                    <p>@p.Size</p>
+                    <p>@p.Name</p>
+                    <p>@p.Description</p>
+                    <p>@p.Price</p>
+                </div>
+                <button class="btn btn-secondary" @onclick=@(() => removePizza(p))>x</button>
+            </div>
+        }
+    </ul>
+    <div class="shopping-bask_sub-total">
+        <span>Total: £@ShoppingBasketService.TotalPizzaPrice</span>
+        <button class="btn btn-warning" @onclick=@OnPurchase>Buy</button>
+    </div>
+
+</div>
+
+
+@code {
+
+    [Parameter]
+    public List<Pizza> pizzaList { get; set; }
+
+    double TotalPrize;
+
+    public void OnPurchase()
+    {
+        ShoppingBasketService.IsCheckoutComplete = true;
+        NavManager.NavigateTo("/register");
+    }
+    public void removePizza(Pizza pizza)
+    {
+        ShoppingBasketService.removePizzaToOrder(pizza);
+    }
+
+}

@@ -1,0 +1,42 @@
+﻿.register {
+    &__form {
+        display: flex;
+        justify-content: space-between;
+        padding: 2.5rem 4rem;
+        background-image: linear-gradient(to bottom, transparent, #fff5ab22);
+
+        div {
+            flex: 0 0 47.5%
+        }
+    }
+
+    &__input {
+        margin-bottom: .5rem;
+        label {
+            width: 7rem;
+        }
+
+        input {
+            width: calc(100% - 8rem);
+            border-radius: 3px;
+        }
+
+
+    }
+
+    &__card {
+        border: 1px solid white;
+        border-radius: 3px;
+        padding: 2.5rem 4rem;
+        /*width: 25%;*/
+    }
+
+    .btn__container {
+        text-align: center;
+        margin-top: 1rem;
+
+        .btn {
+            color: aliceblue;
+        }
+    }
+}

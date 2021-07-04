@@ -1,0 +1,25 @@
+﻿@page "/myorders"
+@using Data;
+@inject OrderService OrderService;
+@inject NavigationManager NavManager
+
+@foreach(var order in OrderService.OrderList)
+{
+    <div class="order-card">
+        <div>
+            <h3 class="order-card__time text-danger">@order.OrderDetail.time</h3>
+            <div>
+                Items: <span class="font-weight-bold">@order.OrderDetail.ShoppingList.Count </span>
+                Total price: <span class="font-weight-bolder">£@order.OrderDetail.TotalPizzaPrice</span>
+            </div>
+        </div>
+        <h5>
+            Status: <span class="font-weight-bold">@order.Status</span>
+        </h5>
+        <button class="btn btn-danger" @onclick=@(() => NavManager.NavigateTo("/myorders/" + order._id))>Track</button>
+    </div>
+}
+
+@code {
+
+}

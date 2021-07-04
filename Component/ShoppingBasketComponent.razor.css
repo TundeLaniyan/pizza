@@ -1,0 +1,33 @@
+﻿.shopping-bask {
+  /*background: #bfb8b8;*/
+  background-color: #9f3939;
+  /*background: bisque;*/
+  padding: 2rem 5rem;
+  border: 1px solid white;
+  border-color: darkgoldenrod;
+  border-radius: 3px;
+}
+
+.shopping-bask_sub-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.pizza-checkout-display {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.pizza-checkout-content {
+    display: flex;
+    flex-direction: column;
+}
+.pizza-checkout-display p {
+    margin-bottom: 0;
+}
